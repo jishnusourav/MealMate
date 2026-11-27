@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MealMate | Weekly Meal Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+            <a class="brand" href="#dashboard">
+                <span class="brand-mark">M</span>
+                <span>meal<span class="brand-light">mate</span></span>
+            </a>
+
+            <p class="nav-label">WORKSPACE</p>
+            <nav class="side-nav">
+                <a class="nav-link active" href="#dashboard" data-section="dashboard">
+                    <span class="nav-icon">⌂</span> Dashboard
+                </a>
+                <a class="nav-link" href="#planner" data-section="planner">
+                    <span class="nav-icon">▦</span> Weekly Planner
+                </a>
+                <a class="nav-link" href="#my-meals" data-section="my-meals">
+                    <span class="nav-icon">♧</span> My Meals
+                </a>
+            </nav>
+
+            <div class="sidebar-tip">
+                <div class="tip-icon">✦</div>
+                <h3>A little planning goes a long way.</h3>
+                <p>Make space for good food and a calmer week.</p>
+            </div>
+
+            <div class="sidebar-bottom">
+                <span class="avatar">MM</span>
+                <div>
+                    <strong>My Meal Plan</strong>
+                    <small>Personal workspace</small>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+                <div class="breadcrumb">Workspace <span>/</span> <strong id="pageName">Dashboard</strong></div>
+                <div class="topbar-right">
+                    <span class="today-pill"><span class="live-dot"></span> Your weekly plan</span>
+                </div>
+            </header>
+
+            <section class="page-section" id="dashboard">
+                <div class="welcome-row">
+                    <div>
+                        <p class="eyebrow">YOUR PERSONAL FOOD SPACE</p>
+                        <h1>Good morning!<br><span>Let’s plan something delicious.</span></h1>
+                        <p class="intro">Your meals, your rhythm, your week.</p>
+                    </div>
+                    <div class="welcome-art" aria-hidden="true">
+                        <div class="art-orbit orbit-one"></div>
+                        <div class="art-orbit orbit-two"></div>
+                        <div class="plate">🥗</div>
+                        <span class="art-leaf leaf-one">✦</span>
+                        <span class="art-leaf leaf-two">✧</span>
+                    </div>
+                </div>
+
+                <div class="summary-grid">
+                    <article class="summary-card primary-summary">
+                        <div class="summary-top"><span>MEALS PLANNED</span><span class="summary-icon">▦</span></div>
+                        <div class="summary-number" id="plannedCount">0<span> / 21</span></div>
+                        <p>Your weekly meal slots filled</p>
+                        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+                        <small id="progressText">0% of your week planned</small>
+                    </article>
+                    <article class="summary-card">
+                        <div class="summary-top"><span>BREAKFAST</span><span class="summary-icon">☀</span></div>
+                        <div class="summary-number" id="breakfastCount">0</div>
+                        <p>Morning meals planned</p>
+                    </article>
+                    <article class="summary-card">
+                        <div class="summary-top"><span>LUNCH</span><span class="summary-icon">◉</span></div>
+                        <div class="summary-number" id="lunchCount">0</div>
+                        <p>Midday meals planned</p>
+                    </article>
+                    <article class="summary-card">
+                        <div class="summary-top"><span>DINNER</span><span class="summary-icon">☾</span></div>
+                        <div class="summary-number" id="dinnerCount">0</div>
+                        <p>Evening meals planned</p>
+                    </article>
+                    <article class="summary-card remaining-summary">
+                        <div class="summary-top"><span>REMAINING SLOTS</span><span class="summary-icon">＋</span></div>
+                        <div class="summary-number" id="remainingCount">21</div>
+                        <p>Open spaces in your week</p>
+                    </article>
+                </div>
+
+                <section class="content-card overview-card">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">A QUICK LOOK</p>
+                            <h2>This week's overview</h2>
+                        </div>
+                        <a href="#planner" class="text-link" data-section-link="planner">Open weekly planner <span>→</span></a>
+                    </div>
+                    <div class="overview-days" id="overviewDays"></div>
+                </section>
+            </section>
+
+            <section class="page-section" id="planner">
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">MAKE YOUR WEEK WORK FOR YOU</p>
+                        <h1>Weekly planner</h1>
+                        <p class="intro">Choose what sounds good for each part of your day.</p>
+                    </div>
+                    <button class="button button-primary" id="openAddButton">＋ Add a meal</button>
+                </div>
+
+                <div class="planner-legend">
+                    <span><i class="legend-dot breakfast-dot"></i> Breakfast</span>
+                    <span><i class="legend-dot lunch-dot"></i> Lunch</span>
+                    <span><i class="legend-dot dinner-dot"></i> Dinner</span>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-scroll">
+                        <table class="meal-table">
+                            <thead>
+                                <tr>
+                                    <th>DAY</th>
+                                    <th><span class="meal-head-icon">☀</span> BREAKFAST</th>
+                                    <th><span class="meal-head-icon">◉</span> LUNCH</th>
+                                    <th><span class="meal-head-icon">☾</span> DINNER</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mealTableBody"></tbody>
+                        </table>
+                    </div>
+                    <p class="table-hint">Tip: Select “Add a meal” to fill an empty slot, or use Edit to replace a meal.</p>
+                </div>
+            </section>
+
+            <section class="page-section" id="my-meals">
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">YOUR FOOD COLLECTION</p>
+                        <h1>My meals</h1>
+                        <p class="intro">All the meals you've added to this week's plan.</p>
+                    </div>
+                    <button class="button button-primary" id="myMealsAddButton">＋ Add a meal</button>
+                </div>
+                <div class="meal-list" id="mealList"></div>
+            </section>
+
+            <footer class="footer">
+                <span>MEALMATE</span>
+                <p>Plan your meals. Simplify your week.</p>
+            </footer>
+        </main>
+    </div>
+
+    <div class="modal-backdrop" id="mealModal" hidden>
+        <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-header">
+                <div>
+                    <p class="eyebrow">MAKE IT DELICIOUS</p>
+                    <h2 id="modalTitle">Add a meal</h2>
+                    <p class="modal-subtitle">Fill in the details for your meal slot.</p>
+                </div>
+                <button class="close-button" id="closeModalButton" aria-label="Close">×</button>
+            </div>
+
+            <form id="mealForm">
+                <label for="daySelect">Choose a day</label>
+                <select id="daySelect" required>
+                    <option value="">Select a day</option>
+                    <option>Monday</option><option>Tuesday</option>
+                    <option>Wednesday</option><option>Thursday</option>
+                    <option>Friday</option><option>Saturday</option><option>Sunday</option>
+                </select>
+
+                <label for="mealTypeSelect">Meal type</label>
+                <select id="mealTypeSelect" required>
+                    <option value="">Select meal type</option>
+                    <option>Breakfast</option><option>Lunch</option><option>Dinner</option>
+                </select>
+
+                <label for="mealNameInput">Meal name</label>
+                <input id="mealNameInput" type="text" placeholder="e.g. Vegetable poha" maxlength="60" required>
+
+                <label for="mealDescriptionInput">Short description <span class="optional">(optional)</span></label>
+                <textarea id="mealDescriptionInput" rows="3" maxlength="120" placeholder="Add a note about this meal..."></textarea>
+
+                <p class="form-message" id="formMessage" role="status"></p>
+                <div class="modal-actions">
+                    <button type="button" class="button button-quiet" id="cancelButton">Cancel</button>
+                    <button type="submit" class="button button-primary" id="saveMealButton">Save meal</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+</body>
+</html>
